@@ -81,4 +81,4 @@ RUN pip install snakebite-py3 protobuf==3.20.*
 
 EXPOSE 9870 9864 9868 8088 9000 8042 4040 8888
 
-ENTRYPOINT $HADOOP_HOME/startup.sh; bash
+ENTRYPOINT [$HADOOP_HOME/startup.sh]
