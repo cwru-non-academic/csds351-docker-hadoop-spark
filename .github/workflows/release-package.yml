@@ -32,7 +32,7 @@ jobs:
         run: docker build . --file Dockerfile --tag $IMAGE_NAME --label "runnumber=${GITHUB_RUN_ID}"
 
       - name: Log in to registry
-        run: echo "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" | docker login ghcr.io -u $ --password-stdin
+        run: echo "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" | docker login ghcr.io -u $ --password-stdin
         #
       - name: Push image
         run: |
