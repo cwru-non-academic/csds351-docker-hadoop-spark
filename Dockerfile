@@ -48,6 +48,8 @@ COPY startup.sh $HADOOP_HOME/startup.sh
 COPY jupyter_password.exp /jupyter_password.exp
 COPY hadoop_config /usr/local/hadoop/etc/hadoop
 COPY ssh_config/config /root/.ssh/
+COPY ssh_config/sshd_root_login.conf /etc/ssh/sshd_config.d/
+COPY root_password.exp /root_password.exp
 
 RUN chmod 755 -R $HADOOP_HOME
 RUN mkdir /code
@@ -84,6 +86,6 @@ ENV JUPYTER_PORT=8888
 
 RUN pip install snakebite-py3 protobuf==3.20.*
 
-EXPOSE 9870 9864 9868 8088 9000 8042 4040 8888
+EXPOSE 22 9870 9864 9868 8088 9000 8042 4040 8888
 
 ENTRYPOINT bash /usr/local/hadoop/startup.sh

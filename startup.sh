@@ -1,5 +1,8 @@
 #!/bin/bash
 
+echo "Setting root password..."
+expect /root_password.exp
+
 echo "Starting SSH daemon..."
 service ssh start
 
