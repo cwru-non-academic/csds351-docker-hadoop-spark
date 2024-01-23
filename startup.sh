@@ -10,3 +10,6 @@ start-yarn.sh
 
 echo "Starting Jupyter..."
 jupyter notebook --allow-root --ip=0.0.0.0 
+
+echo "Settings Jupyter password..."
+expect /jupyter_password.exp

@@ -45,18 +45,22 @@ ENV YARN_RESOURCEMANAGER_USER="root"
 ENV YARN_NODEMANAGER_USER="root"
 
 COPY startup.sh $HADOOP_HOME/startup.sh
+COPY jupyter_password.exp /jupyter_password.exp
 COPY hadoop_config /usr/local/hadoop/etc/hadoop
 COPY ssh_config/config /root/.ssh/
 
 RUN chmod 755 -R $HADOOP_HOME
 RUN mkdir /code
 
+RUN echo 'tzdata tzdata/Areas select America' | debconf-set-selections RUN echo 'tzdata tzdata/Zones/Europe select New_York' | debconf-set-selections
+
 RUN apt-get update --yes && \
-    apt-get install --yes --no-install-recommends \
+    DEBIAN_FRONTEND="noninteractive" apt-get install --yes --no-install-recommends \
     fonts-liberation \
     # - pandoc is used to convert notebooks to html files
     #   it's not present in aarch64 ubuntu image, so we install it here
     pandoc \
+    expect \
     # - run-one - a wrapper script that runs no more
     #   than one unique  instance  of  some  command with a unique set of arguments,
     #   we use `run-one-constantly` to support `RESTARTABLE` option
