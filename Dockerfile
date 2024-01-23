@@ -52,7 +52,8 @@ COPY ssh_config/config /root/.ssh/
 RUN chmod 755 -R $HADOOP_HOME
 RUN mkdir /code
 
-RUN echo 'tzdata tzdata/Areas select America' | debconf-set-selections RUN echo 'tzdata tzdata/Zones/Europe select New_York' | debconf-set-selections
+ENV TZ=America/New_York
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 RUN apt-get update --yes && \
     DEBIAN_FRONTEND="noninteractive" apt-get install --yes --no-install-recommends \
