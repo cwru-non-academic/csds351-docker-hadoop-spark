@@ -72,14 +72,14 @@ export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
 # prefer any Xmx setting in their respective _OPT variable.
 # There is no default; the JVM will autoscale based upon machine
 # memory size.
-# export HADOOP_HEAPSIZE_MAX=
+export HADOOP_HEAPSIZE_MAX=1024
 
 # The minimum amount of heap to use (Java -Xms).  If no unit
 # is provided, it will be converted to MB.  Daemons will
 # prefer any Xms setting in their respective _OPT variable.
 # There is no default; the JVM will autoscale based upon machine
 # memory size.
-# export HADOOP_HEAPSIZE_MIN=
+export HADOOP_HEAPSIZE_MIN=1024
 
 # Enable extra debugging of Hadoop's JAAS binding, used to set up
 # Kerberos security.
