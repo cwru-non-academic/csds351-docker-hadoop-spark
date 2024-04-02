@@ -5,7 +5,7 @@
         <value>mapreduce_shuffle</value>
     </property>
     <property>
-        <name>arn.nodemanager.elastic-memory-control.enabled</name>
+        <name>yarn.nodemanager.elastic-memory-control.enabled</name>
         <value>true</value>
     </property>
     <property>
