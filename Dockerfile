@@ -50,6 +50,7 @@ COPY hadoop_config /usr/local/hadoop/etc/hadoop
 COPY ssh_config/config /root/.ssh/
 COPY ssh_config/sshd_root_login.conf /etc/ssh/sshd_config.d/
 COPY root_password.exp /root_password.exp
+COPY profile_config/02-hadoop-env-vars.sh /etc/profile.d/
 
 RUN chmod 755 -R $HADOOP_HOME
 RUN mkdir /code
@@ -60,6 +61,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN apt-get update --yes && \
     DEBIAN_FRONTEND="noninteractive" apt-get install --yes --no-install-recommends \
     fonts-liberation \
+    locales \
     # - pandoc is used to convert notebooks to html files
     #   it's not present in aarch64 ubuntu image, so we install it here
     pandoc \
@@ -69,6 +71,13 @@ RUN apt-get update --yes && \
     #   we use `run-one-constantly` to support `RESTARTABLE` option
     run-one && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Set the locale
+RUN sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && \
+    locale-gen
+ENV LANG en_US.UTF-8  
+ENV LANGUAGE en_US:en  
+ENV LC_ALL en_US.UTF-8  
 
 USER ${NB_UID}
 

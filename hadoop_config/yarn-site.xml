@@ -6,7 +6,7 @@
     </property>
     <property>
         <name>yarn.nodemanager.elastic-memory-control.enabled</name>
-        <value>true</value>
+        <value>false</value>
     </property>
     <property>
         <name>yarn.nodemanager.resource.memory.enforced</name>
@@ -15,5 +15,13 @@
     <property>
         <name>yarn.nodemanager.pmem-check-enabled</name>
         <value>true</value>
+    </property>
+    <property>
+        <name>mapreduce.map.memory.mb</name>
+        <value>2048</value>
+    </property>
+    <property>
+        <name>mapreduce.reduce.memory.mb</name>
+        <value>4096</value>
     </property>
 </configuration>
